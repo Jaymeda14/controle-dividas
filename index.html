@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pagina Principal</title>
+</head>
+<body>
+    <header>
+        <h1>MENSAL</h1>
+        <button id="btn-add">+</button>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Paga/Pendente</th> <!-- check box -->
+                </tr>
+            </thead>
+           
+            <tbody></tbody>
+        </table>
+        <div id="modal" >
+            <form action="" id="modal-conteudo">
+                <div>
+                    <label for="dia">Dia
+                    <input type="number" name="dia" id="dia" placeholder="Dia">
+                    </label>
+                </div>
+                <div>
+                    <label for="nome">Nome
+                    <input type="text" name="nome" id="nome" placeholder="Nome">
+                    </label>
+                </div>
+                <div>
+                    <label for="valor">Valor
+                    <input type="number" name="valor" id="valor" placeholder="Valor">
+                    </label>
+                </div>
+                <div>
+                    <button id="btn-salvar" type="button">Salvar</button>
+                    <button id="btn-cancelar" type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="script.js"></script>    
+</body>
+</html>
