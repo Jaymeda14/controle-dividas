@@ -38,6 +38,41 @@ td {
     border-bottom: 1px solid #eee;
 }
 
+.ativoTr{
+    background-color: rgb(173, 221, 173);
+}
+
+td button {
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-visto {
+    background: #4a90d9;
+    color: white;
+}
+
+.btn-visto:hover {
+    background: #3a7bc0;
+}
+
+.btn-excluir {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background: #c0392b;
+}
+
+td:nth-child(4),
+td:nth-child(5) {
+    text-align: center;
+}
+
 /* camada de fundo escurecido */
 #modal {
     display: none;
@@ -117,3 +152,4 @@ td {
 #btn-add:hover {
     background: #3a7bc0;
 }
+

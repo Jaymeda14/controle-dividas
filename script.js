@@ -7,17 +7,20 @@ let tabela = document.getElementById("tabela")
 let corpoTabela = document.getElementById("corpoTabela")
 let linhaTabela = document.getElementById("linhaTabela")
 
+
+
+let inputDia = document.getElementById("dia")
+let inputNome = document.getElementById("nome")
+let inputValor = document.getElementById("valor")
+
+let dividas = []
+
 btnAdd.addEventListener("click", function(){
    divModal.classList.add("ativo")
 })
 btnCancelar.addEventListener("click", function(){
     divModal.classList.remove("ativo")
 })
-let inputDia = document.getElementById("dia")
-let inputNome = document.getElementById("nome")
-let inputValor = document.getElementById("valor")
-
-let dividas = []
 
 class Divida {
     constructor(dia, nome, valor, paga){
@@ -30,34 +33,80 @@ class Divida {
 }
 
 btnSalvar.addEventListener("click", function(){
-    new Divida(inputDia.value, inputNome.value, inputValor.value, false)
+    new Divida(Number(inputDia.value), inputNome.value, Number(inputValor.value), false)
     divModal.classList.remove("ativo")
-    //console.log(dividas)
+    
     inputDia.value = ""
     inputNome.value = ""
     inputValor.value = ""  
-    console.log(dividas) 
-    mostrarTabela() 
+    
+    persistir()
+    renderizar() 
 })
-let divida1 = new Divida (5, "Pensão", 600, false)
-let divida2 = new Divida (10, "Financiamento", 550, false)
-let divida3 = new Divida (15, "Sea Telecom", 190, false)
 
-function mostrarTabela(){
+
+function renderizar(){
     corpoTabela.innerText = ""
-    for (div of dividas){
+
+    dividas = buscarArrayDividas()
+
+    dividas.forEach(function(div, index){
         let tdDia = document.createElement("td")
         let tdNome = document.createElement("td")
         let tdValor = document.createElement("td")
+        let tdBtn01 = document.createElement("td")
+        let tdBtn02 = document.createElement("td")
         let tr = document.createElement("tr")
-        tdDia.innerText = div.dia
+           
+        if(div.dia < 10){
+            tdDia.innerText = `0${div.dia}`
+        } else {
+            tdDia.innerText = div.dia
+        }
         tdNome.innerText = div.nome
-        tdValor.innerText = div.valor
+        tdValor.innerText = `R$ ${div.valor},00`
         tr.appendChild(tdDia)
         tr.appendChild(tdNome)
         tr.appendChild(tdValor)
         corpoTabela.appendChild(tr)
-    }
+
+        let pagoPendente = document.createElement("button")
+        pagoPendente.textContent = "Visto"
+        pagoPendente.addEventListener("click", function(){
+            tr.classList.toggle("ativoTr")
+        })
+        
+        
+        let btnRemover = document.createElement("button")
+        btnRemover.textContent = "X"
+        btnRemover.addEventListener("click", function(){
+            apagarNoStorage(index)
+        })
+        btnRemover.classList.add("btn-excluir")
+        pagoPendente.classList.add("btn-visto")
+        tdBtn01.appendChild(btnRemover)
+        tdBtn02.appendChild(pagoPendente)
+
+        tr.appendChild(tdBtn01)
+        tr.appendChild(tdBtn02)
+       
+    });
 }
 
-mostrarTabela() 
+renderizar() 
+
+function buscarArrayDividas(){
+    let salvo = localStorage.getItem("dividas")
+    let dividas = salvo? JSON.parse(salvo): []
+    return dividas
+}
+
+function persistir(){
+    localStorage.setItem("dividas", JSON.stringify(dividas))
+}
+
+function apagarNoStorage(index){
+    dividas.splice(index, 1)
+    persistir()
+    renderizar()
+}
