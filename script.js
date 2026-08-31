@@ -8,7 +8,6 @@ let corpoTabela = document.getElementById("corpoTabela")
 let linhaTabela = document.getElementById("linhaTabela")
 
 
-
 let inputDia = document.getElementById("dia")
 let inputNome = document.getElementById("nome")
 let inputValor = document.getElementById("valor")
@@ -48,7 +47,7 @@ btnSalvar.addEventListener("click", function(){
 function renderizar(){
     corpoTabela.innerText = ""
 
-    dividas = buscarArrayDividas()
+    dividas = buscarDividasOrdenadas()
 
     dividas.forEach(function(div, index){
         let tdDia = document.createElement("td")
@@ -57,7 +56,10 @@ function renderizar(){
         let tdBtn01 = document.createElement("td")
         let tdBtn02 = document.createElement("td")
         let tr = document.createElement("tr")
-           
+        
+        if(div.paga){
+             tr.classList.add("ativoTr")             
+        }
         if(div.dia < 10){
             tdDia.innerText = `0${div.dia}`
         } else {
@@ -71,19 +73,25 @@ function renderizar(){
         corpoTabela.appendChild(tr)
 
         let pagoPendente = document.createElement("button")
-        pagoPendente.textContent = "Visto"
+        pagoPendente.textContent = "✔"
         pagoPendente.addEventListener("click", function(){
-            tr.classList.toggle("ativoTr")
+            div.paga = !div.paga
+            persistir()            
+            renderizar()
         })
-        
-        
+                
         let btnRemover = document.createElement("button")
         btnRemover.textContent = "X"
         btnRemover.addEventListener("click", function(){
             apagarNoStorage(index)
+             
         })
         btnRemover.classList.add("btn-excluir")
-        pagoPendente.classList.add("btn-visto")
+        
+        if(div.paga){
+            pagoPendente.classList.add("btn-visto")
+        }
+
         tdBtn01.appendChild(btnRemover)
         tdBtn02.appendChild(pagoPendente)
 
@@ -95,9 +103,13 @@ function renderizar(){
 
 renderizar() 
 
-function buscarArrayDividas(){
+function buscarDividasOrdenadas(){
     let salvo = localStorage.getItem("dividas")
     let dividas = salvo? JSON.parse(salvo): []
+    
+    dividas.sort(function(a,b){
+        return a.dia - b.dia
+    })
     return dividas
 }
 
