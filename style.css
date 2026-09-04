@@ -153,3 +153,40 @@ td:nth-child(5) {
     background: #3a7bc0;
 }
 
+section {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.card {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card p {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: #888;
+}
+
+.card strong {
+    font-size: 22px;
+    color: #333;
+}
+
+/* Total Pago com toque de verde */
+.card:nth-child(2) strong {
+    color: #3bbb46;
+}
+
+/* Total Aberto com toque de vermelho/laranja */
+.card:nth-child(3) strong {
+    color: #e67e22;
+}
+

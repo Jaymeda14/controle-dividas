@@ -6,6 +6,9 @@ let btnSalvar = document.getElementById("btn-salvar")
 let tabela = document.getElementById("tabela")
 let corpoTabela = document.getElementById("corpoTabela")
 let linhaTabela = document.getElementById("linhaTabela")
+let total = document.getElementById("total")
+let totalPago = document.getElementById("totalPago")
+let totalAberto = document.getElementById("totalAberto")
 
 
 let inputDia = document.getElementById("dia")
@@ -13,6 +16,8 @@ let inputNome = document.getElementById("nome")
 let inputValor = document.getElementById("valor")
 
 let dividas = []
+
+
 
 btnAdd.addEventListener("click", function(){
    divModal.classList.add("ativo")
@@ -57,6 +62,7 @@ function renderizar(){
         let tdBtn02 = document.createElement("td")
         let tr = document.createElement("tr")
         
+
         if(div.paga){
              tr.classList.add("ativoTr")             
         }
@@ -99,6 +105,9 @@ function renderizar(){
         tr.appendChild(tdBtn02)
        
     });
+        total.innerText = `R$ ${calcularTotal()},00`
+        totalPago.innerText = `R$ ${calcularPago()},00`
+        totalAberto.innerText = `R$ ${calcularEmAberto()},00`
 }
 
 renderizar() 
@@ -122,3 +131,41 @@ function apagarNoStorage(index){
     persistir()
     renderizar()
 }
+
+function calcularTotal(){
+    return dividas.reduce(function(acumulador, itemAtual){
+        let valorTotal = acumulador + itemAtual.valor
+        return valorTotal
+    }, 0)    
+}
+
+function calcularPago(){
+    let dividasPagas = []
+    for(div of dividas){
+        if(div.paga===true){
+            dividasPagas.push(div) 
+        }
+    }
+    return dividasPagas.reduce(function(acumulador, itemAtual){
+        let valorPago = acumulador + itemAtual.valor
+        return valorPago
+    }, 0)
+}
+
+function calcularEmAberto(){
+    let emAberto = []
+    for(div of dividas){
+        if(div.paga===false){
+            emAberto.push(div)
+        }
+    }
+
+    return emAberto.reduce(function(acumulador, itemAtual){
+        let valorAberto = acumulador + itemAtual.valor
+        return valorAberto
+    }, 0)
+}
+
+
+
+
