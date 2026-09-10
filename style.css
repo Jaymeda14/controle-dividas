@@ -1,3 +1,14 @@
+html {
+    background: #d8dbe0;
+}
+
+body {
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: #f0f2f5;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
 * {
     margin: 0;
     padding: 0;
