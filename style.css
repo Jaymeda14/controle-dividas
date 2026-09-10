@@ -2,13 +2,6 @@ html {
     background: #d8dbe0;
 }
 
-body {
-    max-width: 420px;
-    margin: 0 auto;
-    min-height: 100vh;
-    background: #f0f2f5;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
-}
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +10,13 @@ body {
 
 body {
     font-family: Arial, sans-serif;
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: 100vh;
     background: #f0f2f5;
     color: #333;
     padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
 }
 
 header {
@@ -27,6 +24,10 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
 }
 
 table {
@@ -40,13 +41,15 @@ table {
 th {
     background: #4a90d9;
     color: white;
-    padding: 10px;
+    padding: 8px;
     text-align: left;
+    font-size: 12px;
 }
 
 td {
-    padding: 8px 10px;
+    padding: 6px 8px;
     border-bottom: 1px solid #eee;
+    font-size: 13px;
 }
 
 .ativoTr{
@@ -166,7 +169,7 @@ td:nth-child(5) {
 
 section {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     margin-top: 24px;
 }
 
@@ -174,7 +177,7 @@ section {
     flex: 1;
     background: white;
     border-radius: 8px;
-    padding: 16px 20px;
+    padding: 12px 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -182,22 +185,13 @@ section {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    font-size: 13px;
+    font-size: 11px;
     color: #888;
 }
 
 .card strong {
-    font-size: 22px;
+    font-size: 16px;
     color: #333;
 }
 
-/* Total Pago com toque de verde */
-.card:nth-child(2) strong {
-    color: #3bbb46;
-}
-
-/* Total Aberto com toque de vermelho/laranja */
-.card:nth-child(3) strong {
-    color: #e67e22;
-}
-
+/* Total Pago com toque
