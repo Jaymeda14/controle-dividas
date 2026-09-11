@@ -72,7 +72,7 @@ function renderizar(){
             tdDia.innerText = div.dia
         }
         tdNome.innerText = div.nome
-        tdValor.innerText = `R$ ${div.valor},00`
+        tdValor.innerText = div.valor.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
         tr.appendChild(tdDia)
         tr.appendChild(tdNome)
         tr.appendChild(tdValor)
@@ -105,9 +105,9 @@ function renderizar(){
         tr.appendChild(tdBtn02)
        
     });
-        total.innerText = `R$ ${calcularTotal()},00`
-        totalPago.innerText = `R$ ${calcularPago()},00`
-        totalAberto.innerText = `R$ ${calcularEmAberto()},00`
+        total.innerText = calcularTotal().toLocaleString('pt-BR', {style:'currency', currency:'BRL'})
+        totalPago.innerText = calcularPago().toLocaleString('pt-BR', {style:'currency', currency:'BRL'})
+        totalAberto.innerText = calcularEmAberto().toLocaleString('pt-BR', {style:'currency', currency:'BRL'})
 }
 
 renderizar() 
