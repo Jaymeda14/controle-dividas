@@ -17,6 +17,14 @@ let inputValor = document.getElementById("valor")
 
 let dividas = []
 
+ let titulo = document.getElementById("titulo")
+ let data = new Date()
+ let mesAtual = data.toLocaleString('pt-BR',{month: 'long'})
+ mesAtual = mesAtual.charAt(0).toUpperCase() + mesAtual.slice(1)
+ titulo.innerText = `${mesAtual}/${data.getFullYear()}`
+
+  
+
 
 
 btnAdd.addEventListener("click", function(){
@@ -61,11 +69,9 @@ function renderizar(){
         let tdBtn01 = document.createElement("td")
         let tdBtn02 = document.createElement("td")
         let tr = document.createElement("tr")
-        let titulo = document.getElementById("titulo")
+       
 
-        let data = new Date()
-        let mesAtual = data.toLocaleString('pt-BR',{month: 'long'})
-        titulo.innerText = `${mesAtual}/${data.getFullYear()}`
+       
 
         if(div.paga){
              tr.classList.add("ativoTr")             
