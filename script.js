@@ -24,9 +24,6 @@ let dividas = []
  titulo.innerText = `${mesAtual}/${data.getFullYear()}`
 
   
-
-
-
 btnAdd.addEventListener("click", function(){
    divModal.classList.add("ativo")
 })
